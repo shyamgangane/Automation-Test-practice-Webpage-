@@ -1,5 +1,6 @@
 package com.practiceTestAutomation;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -37,8 +38,16 @@ public class WebPage {
 		WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
 		searchButton.click();
 		
-		Thread.sleep(3000);
+//		List<WebElement> resultslist = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+//		
+//		for(int i = 0; i< resultslist.size(); i++ ) {
+//		String resultText = resultslist.get(i).getText();
+//			System.out.println(resultText );
+//		}
 		
+		
+		Thread.sleep(3000);
+	
 		WebElement searchResult = driver.findElement(By.xpath("//span[@class='a-color-state a-text-bold']"));
 		
 		
@@ -46,9 +55,33 @@ public class WebPage {
 		
 
 		Assert.assertEquals("\"mobile\"", searchResult.getText());
+		
+	}	
+
+
+	@Test
+	public void searchResult() {
+		WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+		searchBox.sendKeys("mobile");
+		
+		
+
+		WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
+		searchButton.click();
+		
+		List<WebElement> resultslist = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+		
+		for(int i = 0; i< resultslist.size(); i++ ) {
+		String resultText = resultslist.get(i).getText();
+			System.out.println(resultText );
+
+	
+
+		}
+	}
 
 		
-	}
+	
 
 	@After
 	public void homepage()
