@@ -13,7 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class FilpkartInvocation {
 	WebDriver driver;
-
+	
+	// Before steup for browser
 	@Before
 	public void setup()
 	{
@@ -27,6 +28,8 @@ public class FilpkartInvocation {
 
 	@Test
 	public void searchResult() throws InterruptedException {
+		
+		// WebElement for loginPopup close button
 		WebElement PotentialAction = driver.findElement(By.xpath("//button[@class='_2KpZ6l _2doB4z']"));
 		PotentialAction.click();
 
