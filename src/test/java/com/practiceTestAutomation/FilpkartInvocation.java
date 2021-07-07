@@ -35,17 +35,17 @@ public class FilpkartInvocation {
 
 		Thread.sleep(3000);
 
-
+		// WebElement for SearchBox for find the product
 		WebElement searchBox = driver.findElement(By.xpath("//input[@title='Search for products, brands and more']"));
 		searchBox.sendKeys("mobile");
 
 
-
+		 // WebElement for Submit button click
 		WebElement searchButton = driver.findElement(By.xpath("//button[@type='submit']"));
 		searchButton.click();
 
 		Thread.sleep(3000);
-
+		// WebElements for list of mobile
 		List<WebElement> resultslist = driver.findElements(By.xpath("//div[@class='_4rR01T']"));
 		System.out.println("Total no of value:" +resultslist.size());
 
@@ -63,7 +63,8 @@ public class FilpkartInvocation {
 
 		}
 		System.out.println("Realme mobile count " + count );
-
+		
+		// price list
 		List<WebElement> resultslist_price = driver.findElements(By.xpath("//div[@class='_30jeq3 _1_WHN1']"));
 		System.out.println("All Product Price count:" +resultslist_price.size());
 		for(int j = 0; j< resultslist_price.size(); j++) {

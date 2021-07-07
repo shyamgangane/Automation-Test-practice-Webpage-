@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebPage {
-	
+
 	WebDriver driver;
 
 	@Before
@@ -25,37 +25,37 @@ public class WebPage {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get("https://www.amazon.in");
 	}
-	
-	
+
+
 	@Test
 	public void searchboxTest() throws InterruptedException
 	{
 		WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
 		searchBox.sendKeys("mobile");
-		
+
 		Thread.sleep(3000);
 
 		WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
 		searchButton.click();
-		
-//		List<WebElement> resultslist = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
-//		
-//		for(int i = 0; i< resultslist.size(); i++ ) {
-//		String resultText = resultslist.get(i).getText();
-//			System.out.println(resultText );
-//		}
-		
-		
+
+		//		List<WebElement> resultslist = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
+		//		
+		//		for(int i = 0; i< resultslist.size(); i++ ) {
+		//		String resultText = resultslist.get(i).getText();
+		//			System.out.println(resultText );
+		//		}
+
+
 		Thread.sleep(3000);
-	
+
 		WebElement searchResult = driver.findElement(By.xpath("//span[@class='a-color-state a-text-bold']"));
-		
-		
+
+
 		// Validation
-		
+
 
 		Assert.assertEquals("\"mobile\"", searchResult.getText());
-		
+
 	}	
 
 
@@ -63,31 +63,37 @@ public class WebPage {
 	public void searchResult() {
 		WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
 		searchBox.sendKeys("mobile");
-		
-		
+
+
 
 		WebElement searchButton = driver.findElement(By.id("nav-search-submit-button"));
 		searchButton.click();
-		
-		List<WebElement> resultslist = driver.findElements(By.xpath("//span[@class='a-size-medium a-color-base a-text-normal']"));
-		
+
+		List<WebElement> resultslist = driver.findElements(By.xpath("//a[@class='a-link-normal a-text-normal']"));
+		System.out.println("Total no of value:" +resultslist.size());
+		int count = 0;
 		for(int i = 0; i< resultslist.size(); i++ ) {
-		String resultText = resultslist.get(i).getText();
+			String resultText = resultslist.get(i).getText();
 			System.out.println(resultText );
 
-	
+			if(resultslist.get(i).getText().contains("Samsung") || resultslist.get(i).getText().contains("samsung"))
+			{
+
+				count++;
+			}
 
 		}
+		System.out.println("Sansumg mobile count " + count);
 	}
 
-		
-	
+
+
 
 	@After
 	public void homepage()
 	{
 		driver.quit();
 	}
-		
+
 
 }
